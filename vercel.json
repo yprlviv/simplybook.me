@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.html",
+      "src": "*.html",
       "use": "@vercel/static"
     }
   ],
@@ -10,6 +10,18 @@
     {
       "src": "/",
       "dest": "/index.html"
+    },
+    {
+      "src": "/jira-ticket-google-signin.html",
+      "dest": "/jira-ticket-google-signin.html"
+    },
+    {
+      "src": "/confluence-page.html",
+      "dest": "/confluence-page.html"
+    },
+    {
+      "src": "/analysis.html",
+      "dest": "/analysis.html"
     },
     {
       "src": "/(.*)",
