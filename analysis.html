@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis - One-Step Registration Form Optimization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: #f4f5f7;
+            color: #172b4d;
+            line-height: 1.6;
+        }
+        
+        .nav-bar {
+            background: #0747a6;
+            padding: 12px 24px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .nav-logo {
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        .breadcrumb {
+            font-size: 12px;
+            color: #6b778c;
+            margin-bottom: 16px;
+        }
+        
+        .breadcrumb a {
+            color: #0052cc;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .page-header {
+            background: white;
+            padding: 32px;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #172b4d;
+            margin-bottom: 8px;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            color: #6b778c;
+            margin-bottom: 16px;
+        }
+        
+        .content-card {
+            background: white;
+            padding: 32px;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
+        
+        .analysis-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #42526e;
+        }
+        
+        .analysis-content p {
+            margin-bottom: 16px;
+        }
+        
+        .analysis-content h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #172b4d;
+            margin: 32px 0 16px 0;
+            padding-top: 24px;
+            border-top: 1px solid #ebecf0;
+        }
+        
+        .analysis-content h2:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        .analysis-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #172b4d;
+            margin: 24px 0 12px 0;
+        }
+        
+        .analysis-content ol, .analysis-content ul {
+            padding-left: 24px;
+            margin: 16px 0;
+        }
+        
+        .analysis-content li {
+            margin: 8px 0;
+            color: #42526e;
+        }
+        
+        .analysis-content strong {
+            color: #172b4d;
+            font-weight: 600;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #0052cc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+        
+        .issue-list {
+            background: #fffae6;
+            border-left: 4px solid #ff991f;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+        
+        .issue-list h4 {
+            color: #ff991f;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .section-divider {
+            border-top: 2px solid #e2e8f0;
+            margin: 32px 0;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <a href="#" class="nav-logo">ANALYSIS</a>
+        <a href="index.html" class="nav-link">← Registration Form Demo</a>
+        <a href="jira-ticket-google-signin.html" class="nav-link">Jira Ticket</a>
+        <a href="confluence-page.html" class="nav-link">Confluence Page</a>
+    </div>
+    
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="#">SimplyBook.me</a> / <a href="#">Product Analysis</a> / <a href="#">User Experience</a> / <a href="#">Onboarding</a> / Registration Form Analysis
+        </div>
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-title">Analysis and thoughts</div>
+        </div>
+        
+        <!-- Analysis Content -->
+        <div class="content-card">
+            <div class="analysis-content">
+                <h2>Onboarding Process Analysis</h2>
+                <p>I went through the following process:</p>
+                <ol>
+                    <li>Registration</li>
+                    <li>Initial setup (working hours, services, providers, design...)</li>
+                    <li>The quick tour and a bit of playing around in the admin panel</li>
+                </ol>
+                
+                <p>It was <strong>VERY hard</strong> to provide one specific improvement, but I'll try to explain my findings and decisions.</p>
+                
+                <h2>Registration Process Issues</h2>
+                <p>First of all, the registration process (sign-up) seemed clear enough but here are my initial findings:</p>
+                
+                <div class="issue-list">
+                    <h4>🚨 Critical Issues Found</h4>
+                    <ol>
+                        <li><strong>No clear way to return to the previous step</strong> (e.g. the Address step once you specified it)</li>
+                        <li><strong>Address location delay:</strong> Once, the address was pulled from my location only after 5 seconds (very long time), and once - wrong address (though I granted access to it)</li>
+                        <li><strong>Captcha is a killer:</strong> Even though we are fighting against bots and test accounts</li>
+                        <li><strong>Small UX annoyances</strong> that are not crucial, yet still annoying (like simplybook.me not fitting in the Company URL field)</li>
+                        <li><strong>Email verification:</strong> The registration code sent to my email did not automatically populate - had to open the email and manually enter it</li>
+                    </ol>
+                </div>
+                
+                <div class="highlight-box">
+                    <p><strong>Decision:</strong> As this is the first step in the Onboarding process, I decided to focus on its improvement for this test task. I will explain why I went with this improvement and discuss one alternative to it that I decided to skip.</p>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <h2>Initial Setup Analysis</h2>
+                <p>The initial setup (working hours, services, providers, design...) was the step with the <strong>least complaints</strong> from me. But one thing was missing, coming in from the registration form...</p>
+                
+                <p>The current registration form states: <em>"Please choose your business category - Help us suggest the best features for your needs."</em> So I was expecting to see the best custom features that I might want to use based on my business category.</p>
+                
+                <h3>Additional Improvement Opportunities</h3>
+                <ul>
+                    <li>Zoom in/out templates</li>
+                    <li>Build a custom template</li>
+                    <li>One of the templates is called 'ADA compliant' -- I was expecting all of the templates to be compliant by default</li>
+                </ul>
+                
+                <div class="section-divider"></div>
+                
+                <h2>Admin Panel & Quick Tour</h2>
+                <p>The quick tour is a nice feature in the Admin panel. I would expect it to be a bit more detailed -- explain what I can do in each section. Also, the AI assistant is cool, but requires a better UX for user prompt, and probably, a faster response.</p>
+                
+                <p>There are also some smaller nuances that I noticed, like the Company details having more fields than those during registration - which sounds a bit inconsistent.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Overall Assessment:</strong> In general, I would say that the whole Onboarding process requires improvements. The question is - how big of a change are you ready to go for. We can improve on what we have - or revisit and revamp it, all the way to it being partially AI-powered.</p>
+                </div>
+                
+                <p><em>Hopefully, I will be able to explain these details and thoughts on our meeting.</em></p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; color: #6b778c; font-size: 12px; padding: 24px 0; border-top: 1px solid #ebecf0; margin-top: 24px;">
+            <p><strong>Document Status:</strong> Draft • <strong>Last Updated:</strong> Oct 23, 2025</p>
+            <p style="margin-top: 8px;">
+                <a href="jira-ticket-google-signin.html" style="color: #0052cc;">View Jira Ticket →</a> • 
+                <a href="confluence-page.html" style="color: #0052cc;">View Confluence Page →</a> • 
+                <a href="index.html" style="color: #0052cc;">View Registration Form Demo →</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

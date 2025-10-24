@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRD - One-Step Registration Form Optimization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: #f4f5f7;
+            color: #172b4d;
+            line-height: 1.6;
+        }
+        
+        .nav-bar {
+            background: #0747a6;
+            padding: 12px 24px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .nav-logo {
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        .breadcrumb {
+            font-size: 12px;
+            color: #6b778c;
+            margin-bottom: 16px;
+        }
+        
+        .breadcrumb a {
+            color: #0052cc;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .page-header {
+            background: white;
+            padding: 32px;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #172b4d;
+            margin-bottom: 8px;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            color: #6b778c;
+            margin-bottom: 16px;
+        }
+        
+        .page-meta {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+            color: #6b778c;
+            margin-bottom: 16px;
+        }
+        
+        .content-card {
+            background: white;
+            padding: 32px;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #172b4d;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-emoji {
+            font-size: 28px;
+        }
+        
+        .section-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #42526e;
+        }
+        
+        .section-content p {
+            margin-bottom: 16px;
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #172b4d;
+            margin: 32px 0 16px 0;
+            padding-top: 24px;
+            border-top: 1px solid #ebecf0;
+        }
+        
+        h3:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #172b4d;
+            margin: 24px 0 12px 0;
+        }
+        
+        .product-overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        
+        .product-overview-table th {
+            background: #f8f9fa;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #172b4d;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .product-overview-table td {
+            padding: 16px;
+            border-bottom: 1px solid #e9ecef;
+            color: #42526e;
+        }
+        
+        .product-overview-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .overview-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        .status-draft {
+            background: #fffae6;
+            color: #b7791f;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .requirements-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        
+        .requirements-table th {
+            background: #f8f9fa;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #172b4d;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .requirements-table td {
+            padding: 16px;
+            border-bottom: 1px solid #e9ecef;
+            color: #42526e;
+            vertical-align: top;
+        }
+        
+        .requirements-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .priority-high {
+            background: #ffebee;
+            color: #c62828;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
+        .priority-medium {
+            background: #fff3e0;
+            color: #ef6c00;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
+        .priority-low {
+            background: #e8f5e8;
+            color: #2e7d32;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
+        .questions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        
+        .questions-table th {
+            background: #f8f9fa;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #172b4d;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .questions-table td {
+            padding: 16px;
+            border-bottom: 1px solid #e9ecef;
+            color: #42526e;
+            vertical-align: top;
+        }
+        
+        .questions-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .info-panel {
+            background: #deebff;
+            border-left: 4px solid #0052cc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+        
+        .success-panel {
+            background: #e3fcef;
+            border-left: 4px solid #00875a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+        
+        .warning-panel {
+            background: #fffae6;
+            border-left: 4px solid #ff991f;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+        
+        ul, ol {
+            padding-left: 24px;
+            margin: 16px 0;
+        }
+        
+        li {
+            margin: 8px 0;
+            color: #42526e;
+        }
+        
+        .metric-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 3px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+        
+        .metric-title {
+            font-weight: 600;
+            color: #172b4d;
+            margin-bottom: 8px;
+        }
+        
+        .metric-description {
+            font-size: 14px;
+            color: #6b778c;
+            margin-bottom: 12px;
+        }
+        
+        .metric-target {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0052cc;
+        }
+        
+        .reference-link {
+            display: inline-block;
+            background: #0052cc;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 3px;
+            text-decoration: none;
+            margin: 4px 8px 4px 0;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        
+        .reference-link:hover {
+            background: #003d99;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <a href="#" class="nav-logo">PRD</a>
+        <a href="index.html" class="nav-link">← Registration Form Demo</a>
+        <a href="jira-ticket-google-signin.html" class="nav-link">Jira Ticket</a>
+        <a href="analysis.html" class="nav-link">Analysis</a>
+    </div>
+    
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="#">SimplyBook.me</a> / <a href="#">Product</a> / <a href="#">Requirements</a> / <a href="#">User Experience</a> / One-Step Registration Form Optimization
+        </div>
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-title">One-Step Registration Form Optimization</div>
+            <div class="page-subtitle">Product Requirements Document</div>
+            <div class="page-meta">
+                <span>📅 Created: Oct 23, 2025</span>
+                <span>📅 Updated: Oct 25, 2025</span>
+                <span>👤 Author: Yuriy Protsiuk</span>
+                <span>📋 Version: 1.0</span>
+            </div>
+        </div>
+        
+        <!-- Product Overview Table -->
+        <div class="content-card">
+            <div class="section-title">
+                <span class="section-emoji">📋</span>
+                Product overview
+            </div>
+            <table class="product-overview-table">
+                <tr>
+                    <th colspan="2">Product overview</th>
+                </tr>
+                <tr>
+                    <td>
+                        <svg class="overview-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                        </svg>
+                        Target date
+                    </td>
+                    <td>Type /date to add a target release date</td>
+                </tr>
+                <tr>
+                    <td>
+                        <svg class="overview-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <circle cx="10" cy="10" r="8" fill="#ff991f"/>
+                        </svg>
+                        Document status
+                    </td>
+                    <td><span class="status-draft">DRAFT</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <svg class="overview-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                        </svg>
+                        Team members
+                    </td>
+                    <td>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li>@Yuriy Protsiuk - Product Owner</li>
+                            <li>@Mike Benkovich - CTO</li>
+                            <li>@Oleksandr Zasanskyi - Head of Product</li>
+                            <li>@Mariia Pavlova - UI/UX Designer</li>
+                            <li>@Viktoria Nalyvaiko - Head of QA</li>
+                            <li>@Vitalii Kordiak - Fullstack Developer</li>
+
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Objective -->
+        <div class="content-card">
+            <div class="section-title">
+                <span class="section-emoji">🎯</span>
+                Objective
+            </div>
+            <div class="section-content">
+                <p>Create an optimized <strong>one-page registration form</strong> with logical field ordering, clear required field indicators, and intelligent auto-generation of company login URLs. The goal is to reduce registration time, improve conversion rates, and eliminate user confusion during the onboarding process.</p>
+                
+                <div class="info-panel">
+                    <p><strong>Business Problem:</strong> Our current registration process requires users to go through a 3-step process with no clear option to return to previous steps, plus a visible CAPTCHA process. This overcomplicates the flow before users move on to the next multi-step process (working hours, providers, services, design, etc.).</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Success Metrics -->
+        <div class="content-card">
+            <div class="section-title">
+                <span class="section-emoji">📊</span>
+                Success metrics
+            </div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Registration Completion Rate:</strong> Increase percentage of users who complete the registration form</li>
+                    <li><strong>Form Abandonment Rate:</strong> Reduce percentage of users who start but don't complete registration</li>
+                    <li><strong>Support Ticket Reduction:</strong> Decrease registration-related support tickets</li>
+                    <li><strong>Time to Complete Registration:</strong> Reduce average time users take to complete registration</li>
+                    <li><strong>User Satisfaction Score:</strong> Improve post-registration user satisfaction ratings</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Assumptions -->
+        <div class="content-card">
+            <div class="section-title">
+                <span class="section-emoji">💭</span>
+                Assumptions
+            </div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>User Behavior:</strong> Users prefer single-page forms over multi-step processes</li>
+                    <li><strong>Website Usage:</strong> Majority of registrations occur on desktop/tablet devices</li>
+                    <li><strong>Auto-generation:</strong> Users will accept auto-generated company logins with manual override option</li>
+                    <li><strong>reCAPTCHA v3:</strong> Invisible bot protection will maintain security without user friction</li>
+                    <li><strong>Required Field Indicators:</strong> Clear visual indicators reduce form abandonment</li>
+                    <li><strong>Password Visibility:</strong> Show/hide toggle improves user experience</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Requirements -->
+        <div class="content-card">
+            <div class="section-title">
+                <span class="section-emoji">📋</span>
+                Requirements
+            </div>
+            <div class="section-content">
+                <table class="requirements-table">
+                    <thead>
+                        <tr>
+                            <th>Requirement</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Analytics Integration</strong></td>
+                            <td>Amplitude event tracking for registration funnel analysis (desktop/tablet only)</td>
+                            <td><span class="priority-high">HIGH</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AC1: Grouped Form Structure & Field Order</strong></td>
+                            <td>Organize fields into logical sections (User Info, Business Info, Address) with visual separation</td>
+                            <td><span class="priority-high">HIGH</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AC4: Required Field Indicators</strong></td>
+                            <td>All required fields show red asterisk (*) and form includes "* Required fields" note at the top</td>
+                            <td><span class="priority-high">HIGH</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AC7: reCAPTCHA v3 Integration</strong></td>
+                            <td>Invisible bot protection without visible user interaction, automatic token generation</td>
+                            <td><span class="priority-high">HIGH</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AC6: Website Responsiveness</strong></td>
+                            <td>Form adapts to different screen sizes with proper layout and no horizontal overflow</td>
+                            <td><span class="priority-high">HIGH</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AC2: Password Field Functionality</strong></td>
+                            <td>Password field includes show/hide toggle button with eye icon that changes state</td>
+                            <td><span class="priority-medium">MEDIUM</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AC3: Company Login Auto-Generation</strong></td>
+                            <td>Automatically generate URL-friendly company login from business name with conversion rules</td>
+                            <td><span class="priority-medium">MEDIUM</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AC5: Form Validation & Submission</strong></td>
+                            <td>Client-side validation with native browser messages, scroll to first error, account creation</td>
+                            <td><span class="priority-medium">MEDIUM</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Out of Scope -->
+        <div class="content-card">
+            <div class="section-title">
+                <span class="section-emoji">❌</span>
+                Out of Scope
+            </div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Google Sign-In Integration:</strong> OAuth authentication is not included in this phase</li>
+                    <li><strong>Social Media Registration:</strong> Facebook, LinkedIn, or other social login options</li>
+                    <li><strong>Multi-language Support:</strong> Form localization for different languages</li>
+                    <li><strong>Advanced Validation:</strong> Real-time email verification or phone number validation</li>
+                    <li><strong>Progressive Web App:</strong> Offline form completion capabilities</li>
+                    <li><strong>Advanced Analytics:</strong> Heat mapping or session recording integration</li>
+                    <li><strong>A/B Testing Framework:</strong> Built-in experimentation platform</li>
+                    <li><strong>Backend API Changes:</strong> Major changes to existing registration endpoints</li>
+                </ul>
+            </div>
+        </div>
+        
+        
+        <!-- Open Questions -->
+        <div class="content-card">
+            <div class="section-title">
+                <span class="section-emoji">❓</span>
+                Open questions
+            </div>
+            <div class="section-content">
+                <table class="questions-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Owner</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>What is the optimal reCAPTCHA v3 score threshold for blocking bots while minimizing false positives?</td>
+                            <td>@Mike Benkovich</td>
+                            <td>Pending</td>
+                        </tr>
+                        <tr>
+                            <td>What accessibility standards should we follow for form elements?</td>
+                            <td>@Mariia Pavlova</td>
+                            <td>Defined</td>
+                        </tr>
+                        <tr>
+                            <td>Should we implement form auto-save for partially completed registrations?</td>
+                            <td>@Yuriy Protsiuk</td>
+                            <td>Under Review</td>
+                        </tr>
+                        <tr>
+                            <td>What is the rollback strategy if the new form causes issues?</td>
+                            <td>@Viktoria Nalyvaiko</td>
+                            <td>Pending</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Reference Links -->
+        <div class="content-card">
+            <div class="section-title">
+                <span class="section-emoji">🔗</span>
+                Reference Links
+            </div>
+            <div class="section-content">
+                <a href="jira-ticket-google-signin.html" class="reference-link">Jira Ticket (ONBOARD-315)</a>
+                <a href="confluence-page.html" class="reference-link">Confluence Page</a>
+                <a href="index.html" class="reference-link">Registration Form Demo</a>
+                <a href="analysis.html" class="reference-link">Analysis & Thoughts</a>
+                <a href="https://developers.google.com/recaptcha/docs/v3" class="reference-link">reCAPTCHA v3 Documentation</a>
+                <a href="https://amplitude.com/docs" class="reference-link">Amplitude Analytics</a>
+                <a href="https://www.w3.org/WAI/WCAG21/quickref/" class="reference-link">WCAG 2.1 Guidelines</a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; color: #6b778c; font-size: 12px; padding: 24px 0; border-top: 1px solid #ebecf0; margin-top: 24px;">
+            <p><strong>Document Status:</strong> Draft • <strong>Last Updated:</strong> Oct 25, 2025</p>
+            <p style="margin-top: 8px;">
+                <a href="jira-ticket-google-signin.html" style="color: #0052cc;">View Jira Ticket →</a> • 
+                <a href="confluence-page.html" style="color: #0052cc;">View Confluence Page →</a> • 
+                <a href="index.html" style="color: #0052cc;">View Registration Form Demo →</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

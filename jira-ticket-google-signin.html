@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONBOARD-315 • One-Step Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: #f4f5f7;
+            color: #172b4d;
+            line-height: 1.6;
+        }
+        
+        .nav-bar {
+            background: #0747a6;
+            padding: 12px 24px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .nav-logo {
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        .breadcrumb {
+            font-size: 12px;
+            color: #6b778c;
+            margin-bottom: 16px;
+        }
+        
+        .breadcrumb a {
+            color: #0052cc;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .ticket-header {
+            background: white;
+            padding: 24px;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+        
+        .ticket-id {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0052cc;
+            margin-bottom: 12px;
+        }
+        
+        .ticket-title {
+            font-size: 24px;
+            font-weight: 500;
+            color: #172b4d;
+            margin-bottom: 16px;
+        }
+        
+        .nb-note {
+            font-size: 14px;
+            color: #5e6c84;
+            font-style: italic;
+            margin-bottom: 20px;
+            padding: 8px 12px;
+            background: #f7f8fa;
+            border-left: 3px solid #ffab00;
+            border-radius: 3px;
+        }
+        
+        .ticket-meta {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            padding-top: 16px;
+            border-top: 1px solid #ebecf0;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .meta-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #6b778c;
+        }
+        
+        .meta-value {
+            font-size: 14px;
+            color: #172b4d;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge-story {
+            background: #00875a;
+            color: white;
+        }
+        
+        .badge-high {
+            background: #de350b;
+            color: white;
+        }
+        
+        .content-card {
+            background: white;
+            padding: 32px;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #172b4d;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-emoji {
+            font-size: 22px;
+        }
+        
+        .section-content {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #42526e;
+        }
+        
+        .section-content p {
+            margin-bottom: 12px;
+        }
+        
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #172b4d;
+            margin: 24px 0 12px 0;
+            padding-top: 16px;
+            border-top: 1px solid #ebecf0;
+        }
+        
+        h3:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        .info-panel {
+            background: #deebff;
+            border-left: 4px solid #0052cc;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 3px;
+        }
+        
+        .success-panel {
+            background: #e3fcef;
+            border-left: 4px solid #00875a;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 3px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+        
+        thead {
+            background: #f4f5f7;
+        }
+        
+        th {
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #172b4d;
+            border-bottom: 2px solid #dfe1e6;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ebecf0;
+            color: #42526e;
+            vertical-align: top;
+        }
+        
+        tbody tr:hover {
+            background: #f4f5f7;
+        }
+        
+        .gherkin-scenario {
+            background: #f4f5f7;
+            border: 1px solid #dfe1e6;
+            border-radius: 3px;
+            padding: 16px;
+            margin: 12px 0;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        .gherkin-title {
+            font-weight: 600;
+            color: #0052cc;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        
+        .gherkin-line {
+            margin: 6px 0;
+            line-height: 1.5;
+            color: #42526e;
+        }
+        
+        .gherkin-keyword {
+            font-weight: 700;
+            color: #de350b;
+            margin-right: 8px;
+        }
+        
+        .metric-card {
+            background: white;
+            border: 1px solid #dfe1e6;
+            border-radius: 3px;
+            padding: 20px;
+            margin: 16px 0;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+        }
+        
+        .metric-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f4f5f7;
+        }
+        
+        .metric-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #172b4d;
+        }
+        
+        .metric-badge {
+            background: #0052cc;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .metric-section {
+            margin: 16px 0;
+        }
+        
+        .metric-section-title {
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #6b778c;
+            margin-bottom: 8px;
+        }
+        
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 16px;
+            border-radius: 3px;
+            overflow-x: auto;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 12px 0;
+        }
+        
+        code {
+            background: #f4f5f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 12px;
+            color: #bf2600;
+        }
+        
+        ul, ol {
+            padding-left: 24px;
+            margin: 12px 0;
+        }
+        
+        li {
+            margin: 6px 0;
+            color: #42526e;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+        
+        .kpi-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .kpi-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        
+        .kpi-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .kpi-description {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Jira-like Navigation -->
+    <div class="nav-bar">
+        <a href="#" class="nav-logo">JIRA</a>
+        <a href="index.html" class="nav-link">← Registration Form Demo</a>
+        <a href="confluence-page.html" class="nav-link">Confluence Page</a>
+        <a href="analysis.html" class="nav-link">Analysis</a>
+    </div>
+    
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="#">SimplyBook.me</a> / <a href="#">New User Experience</a> / <a href="#">Onboarding</a> / ONBOARD-315
+        </div>
+        
+        <!-- Ticket Header Card -->
+        <div class="ticket-header">
+            <div class="ticket-id">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="14" height="14" rx="2" fill="#00875a"/></svg>
+                ONBOARD-315
+            </div>
+            <div class="ticket-title">One-Step Registration Form</div>
+            <div class="nb-note">
+                <strong>NB:</strong> We assume that this Jira ticket went through a series of refinement sessions with the Engineering team and other team members (UX/UI, Product management, etc.)
+            </div>
+        </div>
+        
+        <!-- Business Problem -->
+        <div class="content-card">
+            <div class="section-title">
+               1. Business Problem
+            </div>
+            <div class="section-content">
+                <p>Our current registration process requires the user to go through a 3-step process, with no clear option to return back to the previous step, as well as a recaptcha process. This overcomplicates the flow before the user moves on to the next multi-step process - working hours, providers, services, design, etc.</p>
+            </div>
+        </div>
+        
+        <!-- Aim -->
+        <div class="content-card">
+            <div class="section-title">
+               2. Aim
+            </div>
+            <div class="section-content">
+                <p>Create an optimized <strong>one-page registration form</strong> with logical field ordering, clear required field indicators, and intelligent auto-generation of company login URLs. The goal is to reduce registration time, and improve conversion.</p>
+            </div>
+        </div>
+        
+        <!-- User Story -->
+        <div class="content-card">
+            <div class="section-title">
+                3. User Story
+            </div>
+            <div class="section-content">
+                <div class="info-panel">
+                    <p style="margin: 0;"><strong>As a</strong> business owner signing up for SimplyBook.me,<br>
+                    <strong>I want to</strong> complete a simple, well-organized one-page registration form,<br>
+                    <strong>So that</strong> I can quickly start using the booking system without confusion or frustration.</p>
+                </div>
+            </div>
+            
+            <h3>Form Field Structure (Grouped Sections)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Section</th>
+                        <th>Fields</th>
+                        <th>Required</th>
+                        <th>Visual Design</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>User Information</strong></td>
+                        <td>Your name, Your business email, Password</td>
+                        <td>✅ All required</td>
+                        <td>Light gray background, rounded corners</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Business Information</strong></td>
+                        <td>Your business name, Company login (URL), Business category, Phone number</td>
+                        <td>✅ Required (except Phone)</td>
+                        <td>Light gray background, rounded corners</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Business Address</strong></td>
+                        <td>Country, State/Region, City, ZIP, Street address</td>
+                        <td>✅ Required (except State)</td>
+                        <td>Light gray background, rounded corners</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Terms & Opt-ins</strong></td>
+                        <td>Terms*, Marketing, Marketplace</td>
+                        <td>✅ Terms required<br>⚠️ Others optional</td>
+                        <td>Below sections, with border separator</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Acceptance Criteria -->
+        <div class="content-card">
+            <div class="section-title">
+                <span class="section-emoji">✅</span>
+                4. Acceptance Criteria
+            </div>
+            
+            <h3>AC1: Grouped Form Structure & Field Order</h3>
+            <div class="gherkin-scenario">
+                <div class="gherkin-title">Scenario: User views registration page with grouped sections</div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">GIVEN</span> I am a new user visiting the registration page
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> I should see a single-page form with fields grouped into logical sections
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> I should see a note "* Required fields" near the top
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> all required fields should be marked with red asterisk (*)
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> the form should be organized into 3 main sections:
+                </div>
+                <div class="gherkin-line" style="margin-left: 20px;">
+                    <strong>Section 1: User Information</strong>
+                </div>
+                <div class="gherkin-line" style="margin-left: 40px;">
+                    • Your name * & Your business email * (side by side)
+                </div>
+                <div class="gherkin-line" style="margin-left: 40px;">
+                    • Password * (with show/hide toggle)
+                </div>
+                <div class="gherkin-line" style="margin-left: 20px;">
+                    <strong>Section 2: Business Information</strong>
+                </div>
+                <div class="gherkin-line" style="margin-left: 40px;">
+                    • Your business name *
+                </div>
+                <div class="gherkin-line" style="margin-left: 40px;">
+                    • Company login (part of URL) * (auto-generates from business name)
+                </div>
+                <div class="gherkin-line" style="margin-left: 40px;">
+                    • Business category * & Phone number (side by side)
+                </div>
+                <div class="gherkin-line" style="margin-left: 20px;">
+                    <strong>Section 3: Business Address</strong>
+                </div>
+                <div class="gherkin-line" style="margin-left: 40px;">
+                    • Country * & State/Region (side by side)
+                </div>
+                <div class="gherkin-line" style="margin-left: 40px;">
+                    • City * & ZIP * (side by side)
+                </div>
+                <div class="gherkin-line" style="margin-left: 40px;">
+                    • Street address *
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> Terms checkbox *, Marketing checkbox, Marketplace checkbox should appear after all sections
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> "Sign up now" button should be at the bottom
+                </div>
+            </div>
+            
+            <h3>AC2: Password Field Functionality</h3>
+            <div class="gherkin-scenario">
+                <div class="gherkin-title">Scenario: Password field has show/hide toggle</div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">GIVEN</span> I am filling out the password field
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> I should see an eye icon button next to the password input
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">WHEN</span> I click the eye icon
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> the password should toggle between visible and hidden
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> the icon should change to indicate state
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> password should require minimum 8 characters
+                </div>
+            </div>
+            
+            <h3>AC3: Company Login Auto-Generation</h3>
+            <div class="gherkin-scenario">
+                <div class="gherkin-title">Scenario: Company login auto-generates from business name</div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">GIVEN</span> I am on the registration form
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">WHEN</span> I type "Your business name" = "John's Café & Spa!"
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> the "Company login" field should auto-populate with "johns-cafe-spa"
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> the URL preview should show "https://johns-cafe-spa.simplybook.me"
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> the conversion rules should be:
+                </div>
+                <div class="gherkin-line" style="margin-left: 20px;">
+                    • Convert to lowercase
+                </div>
+                <div class="gherkin-line" style="margin-left: 20px;">
+                    • Remove special characters (keep only a-z, 0-9, hyphens)
+                </div>
+                <div class="gherkin-line" style="margin-left: 20px;">
+                    • Replace spaces with hyphens
+                </div>
+                <div class="gherkin-line" style="margin-left: 20px;">
+                    • Remove consecutive hyphens
+                </div>
+                <div class="gherkin-line" style="margin-left: 20px;">
+                    • Remove leading/trailing hyphens
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> the field should remain editable
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> a warning should display: "⚠️ Cannot be changed later"
+                </div>
+            </div>
+            
+            <h3>AC4: Required Field Indicators</h3>
+            <div class="gherkin-scenario">
+                <div class="gherkin-title">Scenario: All required fields are clearly marked</div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">GIVEN</span> I am viewing the registration form
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> I should see "* Required fields" note at the top
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> required field labels should display red asterisk (*) after label text
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> optional fields should NOT have asterisks: Phone number, State/Region
+                </div>
+            </div>
+            
+            <h3>AC5: Form Validation & Submission</h3>
+            <div class="gherkin-scenario">
+                <div class="gherkin-title">Scenario: User submits complete form</div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">GIVEN</span> I have filled all required fields
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> I have checked "I agree to Terms and Conditions"
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">WHEN</span> I click "Sign up now"
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> the form should validate all required fields
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> the account should be created
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> I should be redirected to onboarding dashboard
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> a welcome email should be sent
+                </div>
+            </div>
+            
+            <div class="gherkin-scenario">
+                <div class="gherkin-title">Scenario: User tries to submit with missing fields</div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">WHEN</span> I click "Sign up now" with empty required fields
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> browser should prevent submission
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> native validation messages should appear
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> page should scroll to first empty field
+                </div>
+            </div>
+            
+            <h3>AC6: Website Responsiveness</h3>
+            <div class="gherkin-scenario">
+                <div class="gherkin-title">Scenario: Form displays correctly on different screen sizes</div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">GIVEN</span> I am viewing the registration form on a website
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> the form should adapt to different screen sizes
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> form should be scrollable without horizontal overflow
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> all form elements should be properly visible and accessible
+                </div>
+            </div>
+            
+            <h3>AC7: reCAPTCHA v3 Integration</h3>
+            <div class="gherkin-scenario">
+                <div class="gherkin-title">Scenario: Invisible reCAPTCHA v3 protects form submission</div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">GIVEN</span> I am on the registration page
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> I should NOT see any reCAPTCHA checkbox or "I am not a robot" challenge
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> reCAPTCHA v3 should load automatically in the background
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">WHEN</span> I fill out the form and click "Sign up now"
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> reCAPTCHA should generate a token automatically
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> the token should be sent with form data to backend
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> backend should verify token with Google before creating account
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> if reCAPTCHA score < 0.5, registration should be blocked
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> user should see generic error: "Registration failed. Please try again."
+                </div>
+            </div>
+            
+            <div class="gherkin-scenario">
+                <div class="gherkin-title">Scenario: reCAPTCHA v3 technical implementation</div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">GIVEN</span> reCAPTCHA v3 is properly configured
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">THEN</span> reCAPTCHA script should load from https://www.google.com/recaptcha/api.js
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> site key should be configured for "registration" action
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> token should be generated on form submit (not page load)
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> token should expire after 2 minutes
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> backend verification should use secret key
+                </div>
+                <div class="gherkin-line">
+                    <span class="gherkin-keyword">AND</span> score threshold should be configurable (default 0.5)
+                </div>
+            </div>
+        </div>
+        
+        <!-- Amplitude Metrics -->
+        <div class="content-card">
+            <div class="section-title">
+                <span class="section-emoji">📊</span>
+                5. Amplitude Event Tracking & Success Metrics
+            </div>
+            
+
+            <!-- Event 1 -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Event 1: registration_page_viewed</div>
+                    <div class="metric-badge">Funnel Start</div>
+                </div>
+                
+                <div class="metric-section">
+                    <div class="metric-section-title">Trigger Point</div>
+                    <p>When registration page loads and becomes visible</p>
+                </div>
+                
+                <div class="metric-section">
+                    <div class="metric-section-title">Event Properties</div>
+                    <table>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><code>page_url</code></td>
+                            <td>String</td>
+                            <td>https://simplybook.it/uk/default/registration</td>
+                        </tr>
+                        <tr>
+                            <td><code>device_type</code></td>
+                            <td>String</td>
+                            <td>desktop | tablet</td>
+                        </tr>
+                        <tr>
+                            <td><code>referrer</code></td>
+                            <td>String</td>
+                            <td>google_search | facebook_ad | direct</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="metric-section">
+                    <div class="metric-section-title">Implementation Code</div>
+                    <div class="code-block">
+<pre>// Track page view on load
+document.addEventListener('DOMContentLoaded', () => {
+      amplitude.track('registration_page_viewed', {
+        page_url: window.location.href,
+        device_type: getDeviceType(), // desktop | tablet
+        referrer: getReferrerSource(),
+        utm_source: getURLParam('utm_source') || 'direct',
+        session_id: getSessionId(),
+        timestamp: Date.now()
+      });
+});</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Event 2 -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Event 2: registration_form_started</div>
+                    <div class="metric-badge">Engagement</div>
+                </div>
+                
+                <div class="metric-section">
+                    <div class="metric-section-title">Trigger Point</div>
+                    <p>When user focuses on first input field</p>
+                </div>
+                
+                <div class="metric-section">
+                    <div class="metric-section-title">Implementation Code</div>
+                    <div class="code-block">
+<pre>let formStarted = false;
+
+document.querySelectorAll('input, select').forEach(field => {
+  field.addEventListener('focus', function() {
+    if (!formStarted) {
+      formStarted = true;
+      
+      amplitude.track('registration_form_started', {
+        first_field_focused: this.id,
+        device_type: getDeviceType(), // desktop | tablet
+        session_id: getSessionId()
+      });
+      
+      sessionStorage.setItem('form_start_time', Date.now());
+    }
+  }, { once: true });
+});</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Event 3 -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Event 3: registration_completed</div>
+                    <div class="metric-badge">Conversion (Primary KPI)</div>
+                </div>
+                
+                <div class="metric-section">
+                    <div class="metric-section-title">Trigger Point</div>
+                    <p>When account successfully created</p>
+                </div>
+                
+                <div class="metric-section">
+                    <div class="metric-section-title">Event Properties</div>
+                    <table>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><code>time_to_complete</code></td>
+                            <td>Number (seconds)</td>
+                            <td>185 (3 min 5 sec)</td>
+                        </tr>
+                        <tr>
+                            <td><code>business_category</code></td>
+                            <td>String</td>
+                            <td>medical | sports | beauty</td>
+                        </tr>
+                        <tr>
+                            <td><code>country</code></td>
+                            <td>String</td>
+                            <td>US | UK | UA</td>
+                        </tr>
+                        <tr>
+                            <td><code>marketing_opt_in</code></td>
+                            <td>Boolean</td>
+                            <td>true | false</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="metric-section">
+                    <div class="metric-section-title">Implementation Code</div>
+                    <div class="code-block">
+<pre>// reCAPTCHA v3 implementation
+function initializeRecaptcha() {
+  grecaptcha.ready(() => {
+    // reCAPTCHA is ready, no visible UI needed
+    console.log('reCAPTCHA v3 initialized');
+  });
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  
+  const formStartTime = sessionStorage.getItem('form_start_time');
+  const timeToComplete = (Date.now() - formStartTime) / 1000;
+  
+  // Generate reCAPTCHA token
+  grecaptcha.ready(() => {
+    grecaptcha.execute('YOUR_SITE_KEY', { action: 'registration' })
+      .then(token => {
+        const formData = {
+          userName: document.getElementById('userName').value,
+          email: document.getElementById('email').value,
+          businessName: document.getElementById('businessName').value,
+          category: document.getElementById('category').value,
+          country: document.getElementById('country').value,
+          marketingOptIn: document.getElementById('marketing').checked,
+          recaptchaToken: token // Include reCAPTCHA token
+        };
+        
+        fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        }).then(response => {
+          if (response.ok) {
+                   amplitude.track('registration_completed', {
+                     time_to_complete: timeToComplete,
+                     business_category: formData.category,
+                     country: formData.country,
+                     marketing_opt_in: formData.marketingOptIn,
+                     device_type: getDeviceType(), // desktop | tablet
+                     session_id: getSessionId()
+                   });
+            
+            window.location.href = '/dashboard';
+          } else {
+            // Handle reCAPTCHA failure or other errors
+            alert('Registration failed. Please try again.');
+          }
+        });
+      });
+  });
+}
+
+// Load reCAPTCHA script
+const script = document.createElement('script');
+script.src = 'https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY';
+script.onload = initializeRecaptcha;
+document.head.appendChild(script);</pre>
+                    </div>
+                </div>
+                
+
+</body>
+</html>
