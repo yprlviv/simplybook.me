@@ -12,8 +12,8 @@
       "dest": "/index.html"
     },
     {
-      "src": "/jira-ticket-google-signin.html",
-      "dest": "/jira-ticket-google-signin.html"
+      "src": "/jira-ticket.html",
+      "dest": "/jira-ticket.html"
     },
     {
       "src": "/confluence-page.html",
